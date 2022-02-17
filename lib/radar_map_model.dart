@@ -17,6 +17,7 @@ class RadarMapModel {
   int alphaPercent;
   double pointRadius;
   Color pointColor;
+  double textOffset;
 
   static const Color defaultGray = Color(0xFFEEF1F7);
   static const Color defaultPointColor = Color(0xFF346CF6);
@@ -34,6 +35,7 @@ class RadarMapModel {
       this.textType = TextType.normal,
       this.alphaPercent = 60,
       this.pointRadius = 3,
+      this.textOffset = 20,
       this.pointColor = defaultPointColor
       });
 }

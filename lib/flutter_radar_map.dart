@@ -298,10 +298,10 @@ class RadarMapPainter extends CustomPainter {
 
   /// 绘制文字
   void drawInfoText(Canvas canvas) {
-    radarMap.textType == TextType.rotate ? drawRotateText(canvas) : drawNormalText(canvas, 20);
+    radarMap.textType == TextType.rotate ? drawRotateText(canvas) : drawNormalText(canvas, radarMap.textOffset);
   }
 
-  void drawNormalText(Canvas canvas, int textOffset){
+  void drawNormalText(Canvas canvas, double textOffset){
     double radius = radarMap.radius + textOffset;
     double angle = 0;
     double realAngle = 0; //用于角度判断，避免double的精度问题
