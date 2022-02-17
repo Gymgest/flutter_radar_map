@@ -18,9 +18,11 @@ class RadarMapModel {
   double pointRadius;
   Color pointColor;
   double textOffset;
+  Color dashColor;
 
   static const Color defaultGray = Color(0xFFEEF1F7);
   static const Color defaultPointColor = Color(0xFF346CF6);
+  static const Color defaultDashColor = Color(0xFFBFBFBF);
 
   RadarMapModel(
       {required this.legend,
@@ -36,7 +38,8 @@ class RadarMapModel {
       this.alphaPercent = 60,
       this.pointRadius = 3,
       this.textOffset = 20,
-      this.pointColor = defaultPointColor
+      this.pointColor = defaultPointColor,
+      this.dashColor = defaultDashColor
       });
 }
 
