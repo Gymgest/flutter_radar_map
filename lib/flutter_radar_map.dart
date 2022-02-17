@@ -144,6 +144,7 @@ class RadarMapPainter extends CustomPainter {
   late Paint mRectFillPaint; //矩形填充画笔
   late Paint mLinePaint; // 线画笔
   late Paint mFillPaint; // 填充画笔
+  late Paint mRadarPathPaint; //绘制内部内容边界
   late Paint mPointPaint; // 圆点
   TextStyle? textStyle;
   late Path mLinePath; // 短直线路径
@@ -158,6 +159,11 @@ class RadarMapPainter extends CustomPainter {
       ..isAntiAlias = true;
 
     mFillPaint = Paint() //填充画笔
+      ..strokeWidth = 0.05 * radarMap.radius
+      ..color = Colors.black
+      ..isAntiAlias = true;
+
+    mRadarPathPaint = Paint() //填充画笔
       ..strokeWidth = 0.05 * radarMap.radius
       ..color = Colors.black
       ..isAntiAlias = true;
@@ -184,7 +190,7 @@ class RadarMapPainter extends CustomPainter {
           canvas,
           radarMap.data[i].data,
           radarMap.indicator.map((item) => item.maxValues).toList(),
-          mFillPaint
+          mRadarPathPaint
             ..color = radarMap.legend[i].color.withAlpha(radarMap.alphaPercent)
             ..isAntiAlias = true);
       drawRadarPath(
@@ -371,7 +377,6 @@ class RadarMapPainter extends CustomPainter {
     paragraphBuilder.pushStyle(ui.TextStyle(color: textStyle!.color ?? Colors.black, textBaseline: ui.TextBaseline.alphabetic));
     paragraphBuilder.addText(text);
     var paragraph = paragraphBuilder.build();
-    print("paragraph.width:${paragraph.width}");
     paragraph.layout(ui.ParagraphConstraints(width: maxWith));
     return paragraph;
   }
