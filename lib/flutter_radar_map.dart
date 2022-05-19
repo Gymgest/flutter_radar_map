@@ -307,7 +307,7 @@ class RadarMapPainter extends CustomPainter {
     radarMap.textType == TextType.rotate ? drawRotateText(canvas) : drawNormalText(canvas, radarMap.textOffset);
   }
 
-  void drawNormalText(Canvas canvas, double textOffset){
+  void drawNormalText(Canvas canvas, double textOffset) {
     double radius = radarMap.radius + textOffset;
     double angle = 0;
     double realAngle = 0; //用于角度判断，避免double的精度问题
@@ -315,18 +315,20 @@ class RadarMapPainter extends CustomPainter {
     double delta = 2 * pi / elementLength;
     Paragraph paragraph;
     for (int i = 0; i < elementLength; i++) {
-      angle += delta;
-      paragraph = buildTextParagraph(radarMap.indicator[i].name);
       double x = 0 + radius * sin(angle);
       double y = 0 - radius * cos(angle);
       realAngle = double.parse(angle.toStringAsFixed(2));
       realPi = double.parse(pi.toStringAsFixed(2));
-      if (0 < realAngle && realAngle < realPi){
+      if (0 < realAngle && realAngle < realPi) {
         x += textOffset;
-      }else if (realPi < realAngle && realAngle < 2 * realPi){
+      } else if (realPi < realAngle && realAngle < 2 * realPi) {
         x -= textOffset;
       }
-      canvas.drawParagraph(paragraph, Offset(x - paragraph.width/2, y - paragraph.height / 2));
+      paragraph = buildTextParagraph(radarMap.indicator[i].name);
+      canvas.drawParagraph(
+          paragraph, Offset(x - paragraph.width / 2, y - paragraph.height / 2));
+      // 角度加上均等分的偏移值
+      angle += delta;
     }
   }
 
